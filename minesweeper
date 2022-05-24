@@ -1,0 +1,53 @@
+
+def Score(nums):
+    print(len(nums))
+    print("the entered numbers are: ",nums)
+    for i in nums:
+        Score= sum(nums)
+    print("Your Score ",Score)
+
+def Start_Game():    
+    chance = 3
+    nums=list()
+    count = 0
+    danger_values = [1, 2, 3 ,4, 5, 6]
+    flag = True
+    true_vals = [7,8,9,10]
+   
+    print("Welcome to Minesweeper")
+    print("Please enter some values between 0 and 10")
+    while chance>0:
+        try:
+            val = int(input())
+            if val<0 or val>10:
+                print("please enter a between 0 and 10 :")
+            elif val in danger_values:
+                print("Ouch, you stepped on a mine!")
+                chance = chance-1
+                nums.append(-val)
+                if chance==0:
+                    print("game over")
+                    Score(nums)
+            elif val in nums:
+                print("Enter a different value")
+    
+            elif val not in nums:
+                nums.append(val)
+                for i in nums:
+                    for (j) in danger_values:
+                        if abs(j)==abs(i):
+                            flag = False  
+            if len(nums)==4 and flag:
+                    print("You completed the game with a perfect score!")
+                    Score(nums)
+                    break       
+            elif true_vals in nums and danger_values in nums:
+                print("you won but not with a perfect score")                
+        except:
+            print("please   enter a valid integer")            
+    
+
+Start_Game()
+
+       
+            
